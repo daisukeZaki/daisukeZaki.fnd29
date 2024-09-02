@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/css/style.css" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="backImageCover">
+        <div class="pictureBook">
+          <div class="topZone">
+            <div class="tpoLeft">
+              <div class="imageCover">
+                <img src="../public/image/bookIcon.png" alt="" />
+              </div>
+              <p>ポケモン図鑑</p>
+            </div>
+            <div class="imageCover">
+              <img src="../public/image/night.png" alt="" />
+            </div>
+            <div class="topRight">
+              <img src="../public/image/sun.png" alt="" />
+              <button>Y</button>
+            </div>
+          </div>
+          <div class="middleZone">
+            <div class="middleLeft">
+              <img src="../public/image/monsterBall.png" alt="" />
+              <p>316</p>
+              <img src="../public/image/openMonsterBall.png" alt="" />
+              <p>389</p>
+            </div>
+            <div class="middleCenter">
+              <p>ポケモン図鑑</p>
+            </div>
+            <div class="middleRight">
+              <img src="" alt="" />
+              <p>番号順</p>
+              <img src="" alt="" />
+            </div>
+          </div>
+          <div class="mainZone">
+            <ul class="pokemonList"></ul>
+            <div class="bookShelf"></div>
+            <div class="displayName">
+              <a href="">フシギダネ</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button></button>
+  </body>
+
+  <script>
+    function pokemonAdd(object) {
+      const li = document.createElement("li");
+      const div = document.createElement("div");
+      const img = document.createElement("img");
+      img.src = object.img;
+      const nameP = document.createElement("p");
+      nameP.className = "name";
+      nameP.textContent = object.name;
+      const indexP = document.createElement("p");
+      indexP.className = "index";
+      indexP.innerText = object.index;
+      div.appendChild(img);
+      div.appendChild(nameP);
+      div.appendChild(indexP);
+      li.appendChild(div);
+      // li.setAttribute("onclick", "detailsOpen()");
+      return li;
+    }
+
+    async function pokemonListGet(roopCount, array) {
+      try {
+        for (let i = 1; i <= roopCount; i++) {
+          const info = {};
+          const response = await fetch(
+            `https://pokeapi.co/api/v2/pokemon-species/${i}/`
+          );
+          const data = await response.json();
+
+          info["sortNo"] =
+            `000${data.pokedex_numbers[0]["entry_number"]}`.slice(-4);
+          info["name"] = data.names[0]["name"];
+          info["index"] = data.pokedex_numbers[0]["entry_number"];
+          info["tribe"] = data.genera[0]["genus"];
+          info[
+            "img"
+          ] = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${i}.png`;
+          console.log(info);
+          array.push(info);
+        }
+        return array;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const pokemonList = document.querySelector(".pokemonList");
+      let pokemonsArray = [];
+      let Array = await pokemonListGet(151, pokemonsArray);
+      console.log(Array);
+      for (let object of Array) {
+        await pokemonList.appendChild(pokemonAdd(object));
+        await fetch(`/pokemonPush?pokemonData=${JSON.stringify(object)}`)
+          .then((response) => console.log("pokemonPush", response.data))
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
+  </script>
+
+  <script>
+    // 監視ターゲットの取得
+    const target = document.querySelector("ul");
+    const liList = [];
+    // オブザーバーの作成
+    const observer = new MutationObserver((records) => {
+      // 変化が発生したときの処理を記述
+      console.log(records[0]["addedNodes"][0]);
+      liList.push(records[0]["addedNodes"][0]);
+    });
+
+    // 監視の開始
+    observer.observe(target, {
+      attributes: true,
+      childList: true,
+    });
+
+    const setPokemonName = document.querySelector("a");
+    document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("mouseover", () => {
+        if (liList.length > 0) {
+          liList.forEach((li) => {
+            li.addEventListener("mouseover", () => {
+              setPokemonName.textContent =
+                li.querySelector(".name").textContent;
+              console.log(li.querySelector(".name").textContent);
+            });
+          });
+        } else {
+          console.log(liList, "入ってません。");
+        }
+      });
+    });
+    // document.addEventListener("DOMContentLoaded", () => {
+    //   document.addEventListener("click", () => {
+    //     if (liList.length > 0) {
+    //       liList.forEach((li) => {
+    //         li.addEventListener("click", () => {
+    //           const pokemonId = li.querySelector(".index").textContent;
+    //           fetch(`/details?pokemonId=${pokemonId}`).then((response) => {
+    //             console.log(response);
+    //           });
+    //         });
+    //       });
+    //     } else {
+    //       console.log(liList, "入ってません。");
+    //     }
+    //   });
+    // });
+  </script>
+</html>

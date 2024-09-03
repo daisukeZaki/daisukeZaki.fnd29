@@ -1,0 +1,296 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  position: relative;
+  box-sizing: content-box;
+  height: 100%;
+  overflow: hidden;
+}
+.main {
+  position: absolute;
+  height: 100vw;
+  width: 100%;
+
+  background-attachment: fixed;
+  background-image: url("https://images.unsplash.com/photo-1649603058596-8fd82c7799ff?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+.backImageCover {
+  height: 100%;
+  background-color: rgba(0, 162, 255, 0.645);
+}
+.pictureBook {
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  /* margin-top: 100px; */
+  height: 600px;
+  width: 1090px;
+  border-radius: 20px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(144, 245, 154, 1),
+    rgba(4, 202, 255, 1)
+  );
+  margin: auto;
+  overflow: hidden;
+}
+.topZone {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+.topZone > .imageCover {
+  height: 40px;
+  width: 40px;
+  border-radius: 45px;
+  background-color: blue;
+  position: relative;
+}
+.topZone > .imageCover > img {
+  height: 30px;
+  width: 30px;
+  border-radius: 45px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tpoLeft,
+.topRight {
+  display: flex;
+  width: 20%;
+  height: 50px;
+  /* justify-content: center; */
+  align-items: center;
+}
+.tpoLeft {
+  margin-left: 30px;
+}
+.tpoLeft > .imageCover {
+  position: relative;
+  height: 29px;
+  width: 29px;
+  border-radius: 0.25rem;
+  background-color: rgb(239, 16, 16);
+}
+.tpoLeft > .imageCover > img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 20px;
+  width: 20px;
+}
+.tpoLeft > p {
+  margin-left: 12px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 20px;
+}
+.topRight {
+  margin-right: 10px;
+  justify-content: right;
+}
+.topRight > img {
+  width: 30px;
+  height: 30px;
+}
+.topRight > div {
+  height: 30px;
+  display: flex;
+  width: 75px;
+  margin: 0 12px;
+  background-color: chocolate;
+  border-radius: 45px;
+  border: none;
+  align-items: center;
+}
+.topRight > div > button {
+  height: 23px;
+  width: 23px;
+  border-radius: 45px;
+  border: none;
+  margin-left: 5px;
+  color: chocolate;
+  font-weight: bold;
+}
+.topRight > div > img {
+  height: 23px;
+  width: 23px;
+  /* filter: brightness(150%); */
+  filter: invert(100%);
+  color: white;
+  margin-left: 11px;
+  vertical-align: middle;
+}
+
+.middleZone {
+  display: flex;
+  height: 40px;
+  background-color: #2a448c;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 4px,
+    rgba(0, 0, 0, 0.6) 0px 7px 13px -3px, rgba(0, 0, 0, 0.5) 0px -3px 0px inset;
+}
+.middleLeft,
+.middleRight {
+  display: flex;
+  height: 40px;
+  width: 40%;
+  align-items: center;
+}
+.middleLeft {
+  margin-left: 15px;
+}
+.middleLeft > img {
+  height: 25px;
+}
+.middleLeft > p {
+  margin: auto 20px auto 5px;
+}
+.middleRight > div {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+.middleRight > div > img {
+  height: 23px;
+  height: 23px;
+  transform: rotate(90deg);
+  filter: invert(100%);
+  margin-right: 18px;
+}
+.mainZone {
+  background-image: url("https://plus.unsplash.com/premium_photo-1675782999354-2f2711e437a5?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fCVFMyU4MiVBNiVFMyU4MyU4MyVFMyU4MyU4OSUyMCVFMyU4MyU4NiVFMyU4MiVBRiVFMyU4MiVCOSVFMyU4MyU4MSVFMyU4MyVBM3xlbnwwfHwwfHx8MA%3D%3D");
+  height: 450px;
+  overflow: hidden;
+}
+.mainZone > ul {
+  display: flex;
+  gap: 6px;
+  margin-top: 50px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+}
+.mainZone > ul::-webkit-scrollbar {
+  display: none;
+}
+
+.mainZone > ul > li {
+  position: relative;
+  height: 320px;
+  width: 60px;
+  flex-shrink: 0;
+  border-radius: 0.12rem;
+  list-style: none;
+  background-color: rgba(179, 198, 192, 1);
+  background-image: -webkit-linear-gradient(
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 50%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  background-image: linear-gradient(
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 50%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  box-shadow: 0 2px 2px 0 rgba(255, 255, 255, 0.1) inset,
+    0 2px 10px 0 rgba(255, 255, 255, 0.2) inset,
+    0 -2px 2px 0 rgba(0, 0, 0, 0.1) inset;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(0, 0, 0, 0.8) -1px -2px 16px 0px;
+  transition: scale 0.6s;
+}
+
+.mainZone > ul > li:hover {
+  scale: 1.1;
+  /* height: 350px; */
+}
+
+.mainZone > ul > li > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 90%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-top: 6px #c0f098 solid;
+  border-bottom: 6px #c0f098 solid;
+}
+.mainZone > ul > li > div > img {
+  margin-top: 5px;
+  height: 40px;
+}
+
+.mainZone > ul > li > div > .name {
+  writing-mode: vertical-rl;
+  margin: 0 auto;
+  font-size: 25px;
+  font-weight: bold;
+}
+.mainZone > ul > li > div > .index {
+  font-weight: bold;
+  font-size: 22px;
+  /* width: 30px; */
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.bookShelf {
+  height: 15px;
+  width: 100%;
+  background-color: #dadff8;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 2px 4px,
+    rgba(0, 0, 0, 0.6) 0px 7px 13px -3px, rgba(0, 0, 0, 0.5) 0px -3px 0px inset;
+}
+.displayName {
+  height: 30px;
+  width: 230px;
+  text-align: center;
+  background-color: #10a31f;
+  border-radius: 45px;
+  margin: 2px auto 0;
+  box-shadow: rgba(14, 30, 37, 0.6) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.8) 0px 2px 16px 0px;
+}
+.displayName > a {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+}
+.select {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  z-index: 1;
+}
+.bottomZone > div {
+  /* position: relative; */
+  width: 37%;
+  display: flex;
+  height: 55px;
+  align-items: center;
+  margin: 0 10px 0 auto;
+  font-size: 20px;
+}
+.bottomZone > div > img {
+  height: 37px;
+}
+.bottomZone > div > p {
+  margin-right: 15px;
+}
